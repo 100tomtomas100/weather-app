@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Secular+One&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <title>Weather</title>
+</head>
+<body>
+    <div id="container">
+        <div id="input">
+            <div id="search">
+                <span id="search-span">
+                    <input type="text" id="search-input" placeholder="Search location...">
+                    <img id="search-img" src="imgs/search.svg" alt="search city">
+                </span>                
+            </div>
+            <div id="search-icon" class="search-info">
+                <img id="search-img-icon" src="" alt="weather icon">
+            </div>
+            <div id="search-icon-description" class="search-info">
+            </div>
+            <div id="search-name" class="search-info">
+            </div>
+            <div id="search-time" class="search-info">
+            </div>
+            <div id="search-day" class="search-info">
+            </div>            
+        </div>
+        <div id="info">
+            <div id="info-temp">
+                <ul id="info-temp-ul">
+                    <span>
+                        <img class="info-img" src="imgs/info-icons/high-temperature-svgrepo-com.svg" alt="">
+                        <li id="info-temp-ul-temp" class="info-li"></li></span> 
+                    <span>
+                        <img class="info-img" src="imgs/info-icons/thermometer-temperature-svgrepo-com.svg" alt="">
+                        <li id="info-temp-ul-temp-feel" class="info-li"></li></span>
+                    <span>
+                        <img class="info-img" src="imgs/info-icons/thermometer-measuring-ascending-temperature-svgrepo-com.svg" alt="">
+                        <li id="info-temp-ul-temp-max" class="info-li"></li></span>
+                    <span>
+                        <img class="info-img" src="imgs/info-icons/descending-temperature-on-thermometer-tool-svgrepo-com.svg" alt="">
+                        <li id="info-temp-ul-temp-min" class="info-li"></li></span>
+                    <span>
+                        <img class="info-img" src="imgs/info-icons/sunrise-svgrepo-com.svg" alt="">
+                        <li id="info-temp-ul-sunrise"class="info-li"></li></span>
+                </ul>
+            </div>
+            <div id="info-add">
+                <ul id="info-add-ul">
+                <span>
+                    <img src="imgs/info-icons/clouds-svgrepo-com.svg" alt="" class="info-img">
+                    <li id="info-add-ul-clouds" class="info-li"></li>
+                </span>
+                <span>
+                    <img src="imgs/info-icons/visibility-eye-svgrepo-com.svg" alt="" class="info-img">
+                    <li id="info-add-ul-visibility" class="info-li"></li>
+                </span>
+                <span>
+                    <img src="imgs/info-icons/humidity-svgrepo-com.svg" alt="" class="info-img">
+                    <li id="info-add-ul-humidity"class="info-li"></li>
+                </span>
+                <span>
+                    <img src="imgs/info-icons/wind-svgrepo-com.svg" alt="" class="info-img">
+                    <li id="info-add-ul-wind" class="info-li"></li>
+                </span>
+                <span>
+                    <img src="imgs/info-icons/sunset-svgrepo-com.svg" alt="" class="info-img">
+                    <li id="info-add-ul-sunset" class="info-li"></li>
+                </span>
+                </ul>
+            </div>
+        </div>
+        <div id="week">
+            <div id="1st-day" class="week-weather"></div>
+            <div id="2nd-day" class="week-weather"></div>
+            <div id="3nd-day" class="week-weather"></div>
+            <div id="4nd-day" class="week-weather"></div>
+            <div id="5nd-day" class="week-weather"></div>
+            <div id="6nd-day" class="week-weather"></div>
+            <div id="7nd-day" class="week-weather"></div>
+        </div>
+    </div>    
+</body>
+</html>
