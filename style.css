@@ -5,19 +5,17 @@
 }
 #container {
     padding-top: 3%;
-    height: 100%;    
+    height: 100%;     
     background-image:  url(imgs/background2.jpg);
     background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh;
+    background-repeat: no-repeat;  
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: auto;
     font-family: 'Secular One', "Montserrat", sans-serif;
 }
-
 #input {
-    grid-area: 1/1/2/2;  
+    grid-area: 1/1/2/2;
 }
 #search {
     margin-bottom: -10%;
@@ -29,14 +27,13 @@
     background-color: transparent;
     color: white;   
     font-size: calc(10px + 1.5vw);
-    max-width: 60%;
+    width: calc(20% + 12vw);
 }
 #search-input::placeholder {
     color: white;
     font-family: 'Secular One', "Montserrat", sans-serif;
 }
-#search-span {
-    
+#search-span {    
     display: flex;
     align-items: flex-start;
 }
@@ -44,7 +41,7 @@
     width: 100%;
     color: white;    
     margin-top: 7%;
-    margin-left: 20%;
+    margin-left: 10%;
 }
 #search-name{
     font-size: calc(20px + 1.5vw);
@@ -56,28 +53,25 @@
     display: flex;
 }
 #search-icon {
-    width: 50%;
-    height: 35%;
+    width: 50%;    
     display: flex;
     justify-content: center;   
 }
 #search-img-icon {
     margin-top: 10%;
-    width: 70%;
+    width: calc(30% + 7vw);
     object-fit: contain;
-
 }
 #search-img {
-    color: white;
     height: calc(15px + 1.5vw)
 }
 #search-icon-description {
-    margin-top: 0;
     width: 50%;
     display: flex;
     justify-content: center;
+    font-size: calc(10px + 1vw);
+    margin-top: 0;
 }
-
 #info {
     grid-area: 1/2/2/3;
     display: grid;
@@ -95,6 +89,7 @@
     align-content: space-between;    
 }
 #info-temp-ul{
+    width: 100%;
     justify-content: flex-end;
 }
 #info-add-ul {
@@ -104,7 +99,7 @@
     list-style: none;
     color: white;
     font-weight: 800;
-    font-size: calc(10px + 1vw);   
+    font-size: calc(10px + 0.7vw);   
 }
 #info span {
     display: flex;
@@ -115,13 +110,27 @@
     margin-right: 10%;
 }
 #week {
+    height: 100%;
+    padding-top: 5%;
     grid-area: 2/1/3/3;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
 }
 .week-weather {
-    width: calc(100/7);
-    margin-left: 3%;
-    margin-right: 3%;
-    background-color: aqua;
+    height: 200px;
+    flex: max(150px, 100%/7 - 60px); 
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    justify-items: center;
+    align-items: center;   
+    color: white;
+    font-family: 'Secular One', "Montserrat", sans-serif; 
+}
+.week-weather img {
+    width: calc(30px + 5vw);
+}
+@media (max-width: 600px) {
+   
 }
