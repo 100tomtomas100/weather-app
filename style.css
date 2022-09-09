@@ -132,5 +132,7 @@
     width: calc(30px + 5vw);
 }
 @media (max-width: 600px) {
-   
+    #container {
+        background-image:  url(imgs/background4.jpg);
+    }    
 }
