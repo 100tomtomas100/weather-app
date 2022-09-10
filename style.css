@@ -62,6 +62,9 @@
     width: calc(30% + 7vw);
     object-fit: contain;
 }
+#search-img-icon::after {
+    content: 
+}
 #search-img {
     height: calc(15px + 1.5vw)
 }
