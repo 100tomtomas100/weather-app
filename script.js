@@ -1,4 +1,33 @@
-let weather = (() => {   
+let weather = (() => {
+        let error = document.getElementById("error");
+        let errani = () => {
+            error.style.display = "flex";            
+            setTimeout(function(){error.style.display = "none"}, 2900);
+        };
+        let emptyCards = () => {
+            let empty = document.querySelectorAll(".week-weather");
+            empty.forEach(e => {
+                e.innerHTML="";
+            });
+        };
+        //celsius or fahrenheit         
+        let celsius = true;
+        let CorF = document.getElementById("fah-cel");
+        let symbol = "°C";
+        let fah32 = () => {
+            if (celsius === true ) {
+                return 0;
+            } else {
+                return 32;
+            }
+        };
+        let fahnumber = () => {
+            if (celsius === true ) {
+                return 1;
+            } else {
+                return 1.8;
+            }
+        };   
     let infoPlacement = (response) => {
         // name of the city 
         let searchName = document.getElementById("search-name");
@@ -55,23 +84,23 @@ let weather = (() => {
         // description of weather
         let searchDis = document.getElementById("search-icon-description");
         searchDis.innerText = response[0].weather[0].main;
+        
         // temperature 
-        let celsius = true;
-        let symbol = (() => {
-            if (celsius === true) {
-                return "°C";
-            } else {
-                return "°F"
-            }
-        })();
+        this.temperature = () => {      
         let infoTemp = document.getElementById("info-temp-ul-temp");
-        infoTemp.innerText = `Temperature \n ${(response[0].main.temp).toFixed(1)}${symbol}`;
+        let infoTempin = (response[0].main.temp)*fahnumber()+fah32();
+        infoTemp.innerText = `Temperature \n ${infoTempin.toFixed(1)}${symbol}`;
         let infoTempFeel = document.getElementById("info-temp-ul-temp-feel");
-        infoTempFeel.innerText = `Feels like \n ${(response[0].main.feels_like).toFixed(1)}${symbol}`;
+        let infoTempFeelin = (response[0].main.feels_like)*fahnumber()+fah32();
+        infoTempFeel.innerText = `Feels like \n ${infoTempFeelin.toFixed(1)}${symbol}`;
         let infoTempMax = document.getElementById("info-temp-ul-temp-max");
-        infoTempMax.innerText = `Max \n ${(response[0].main.temp_max).toFixed(1)}${symbol}`;
+        let infoTempMaxin = (response[0].main.temp_max)*fahnumber()+fah32();
+        infoTempMax.innerText = `Max \n ${infoTempMaxin.toFixed(1)}${symbol}`;
         let infoTempMin = document.getElementById("info-temp-ul-temp-min");
-        infoTempMin.innerText = `Min \n ${(response[0].main.temp_min).toFixed(1)}${symbol}`;
+        let infoTempMinin = (response[0].main.temp_min)*fahnumber()+fah32();
+        infoTempMin.innerText = `Min \n ${infoTempMinin.toFixed(1)}${symbol}`;
+        };
+        temperature()
         // sunrise and sunset
         let infoSunrise = document.getElementById("info-temp-ul-sunrise");
         let infoSunriseDate = timeZoneTime(response[0].sys.sunrise);
@@ -91,13 +120,8 @@ let weather = (() => {
         // 7 days forecast cards
         let cards = document.querySelectorAll(".week-weather");  
         let counter = 1;
-        let counterAd = (() => {
-            if (counter === cards.length) {
-                counter = 1;
-            }
-        })();
 
-        let weatherCard = () => {
+        this.weatherCard = () => {
             let info1 = document.createElement("div");
             let info2 = document.createElement("div");
             let info21 = document.createElement("img");
@@ -121,15 +145,42 @@ let weather = (() => {
             info3.style.justifyContent = "space-around";
             info1.innerText = timeZoneTime(response[1].daily[counter].dt).weekday;
             searchIcon(response[1].daily[counter].weather[0].icon, info21)
-            info22.innerText = response[1].daily[counter].weather[0].main;
-            info31.innerText = `${(response[1].daily[counter].temp.max).toFixed(1)}${symbol}`;
-            info32.innerText = `${(response[1].daily[counter].temp.min).toFixed(1)}${symbol}`;
+            info22.innerText = response[1].daily[counter].weather[0].main;  
+            let in31 = (response[1].daily[counter].temp.max)*fahnumber()+fah32();       
+            info31.innerText = `${in31.toFixed(1)}${symbol}`;
+            let in32 = (response[1].daily[counter].temp.min)*fahnumber()+fah32();
+            info32.innerText = `${in32.toFixed(1)}${symbol}`;
             counter += 1;
         }                 
-        cards.forEach(card => {
+        this.trying = () => {
+            counter = 1;
+            cards.forEach(card => {
             weatherCard();            
-        });
+            });
+        }
+        trying()
+        return {temperature, weatherCard, trying};
     }
+    let shiftFandC = () => {
+            if (celsius === true) {
+                CorF.src = "imgs/Fahrenheit.svg";               
+                celsius = false;
+                symbol = "°F";                
+            } else if (celsius === false) {
+                CorF.src = "imgs/celsius.svg";               
+                celsius = true;
+                symbol = "°C";             
+            }
+            temperature();
+            let empty = document.querySelectorAll(".week-weather");
+            empty.forEach(e => {
+                e.innerHTML="";
+            });
+            trying();         
+        };
+        
+        CorF.addEventListener("click", shiftFandC);
+        
     let information = async(city) => {       
         try {  
             const response = [];
@@ -140,22 +191,20 @@ let weather = (() => {
             let longitude = response[0].coord.lon;
             let url2 = response.push(await fetch(
                 `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&units=metric&appid=20f7632ffc2c022654e4093c6947b4f4`,
-                {mode: 'cors'}).then(res => res.json()));                 
+                {mode: 'cors'}).then(res => res.json())); 
+            emptyCards();                
             // const response = await Promise.all(
             //     urls.map(url => fetch(url, {mode: 'cors'}).then(res => res.json()))
             // );        
             infoPlacement(response)
         } catch (err) {
-            console.log(err);
+            errani();
         }   
     }
     let location = (() => {
         let searchInput = document.getElementById("search-input");    
         let city = () => {
-            let empty = document.querySelectorAll(".week-weather");
-            empty.forEach(e => {
-                e.innerHTML="";
-            });
+           
             result = searchInput.value;
             information(result);      
             searchInput.value ="";

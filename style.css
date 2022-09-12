@@ -3,7 +3,33 @@
     margin: 0;
     padding: 0;    
 }
+@keyframes err{ 
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+#error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    color: red;
+    height: 5%;
+    width: 90%;
+    background-color: rgb(255, 255, 255);   
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Secular One', "Montserrat", sans-serif;    
+    animation: err 1.5s 2;
+    animation-direction: alternate;
+}
 #container {
+    position: relative;
     padding-top: 3%;
     height: 100%;     
     background-image:  url(imgs/background2.jpg);
@@ -53,20 +79,22 @@
     display: flex;
 }
 #search-icon {
-    width: 50%;    
+    width: 50%; 
     display: flex;
     justify-content: center;   
+    align-content: center;
 }
 #search-img-icon {
     margin-top: 10%;
-    width: calc(30% + 7vw);
+    width: calc(50px + 7vw);
     object-fit: contain;
 }
-#search-img-icon::after {
-    content: 
+#fah-cel {
+    height: calc(10px + 1.5vw); 
+    filter: invert(99%) sepia(9%) saturate(329%) hue-rotate(258deg) brightness(118%) contrast(100%);   
 }
 #search-img {
-    height: calc(15px + 1.5vw)
+    height: calc(15px + 1.5vw);
 }
 #search-icon-description {
     width: 50%;
